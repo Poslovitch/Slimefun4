@@ -55,7 +55,7 @@ public class SlimefunItem {
 	String[] keys;
 	Object[] values;
 	Research research;
-	boolean ghost, replacing, enchantable, disenchantable;
+	boolean ghost, obtainable, replacing, enchantable, disenchantable;
 	Set<ItemHandler> itemhandlers;
 	URID urid;
 	boolean ticking = false;
@@ -93,6 +93,7 @@ public class SlimefunItem {
 		this.keys = null;
 		this.values = null;
 		this.ghost = false;
+		this.obtainable = true;
 		this.replacing = false;
 		this.enchantable = true;
 		this.disenchantable = true;
@@ -112,6 +113,7 @@ public class SlimefunItem {
 		this.keys = null;
 		this.values = null;
 		this.ghost = false;
+		this.obtainable = true;
 		this.replacing = false;
 		this.enchantable = true;
 		this.disenchantable = true;
@@ -130,6 +132,7 @@ public class SlimefunItem {
 		this.keys = keys;
 		this.values = values;
 		this.ghost = false;
+		this.obtainable = true;
 		this.replacing = false;
 		this.enchantable = true;
 		this.disenchantable = true;
@@ -148,6 +151,7 @@ public class SlimefunItem {
 		this.keys = keys;
 		this.values = values;
 		this.ghost = false;
+		this.obtainable = true;
 		this.replacing = false;
 		this.enchantable = true;
 		this.disenchantable = true;
@@ -166,6 +170,7 @@ public class SlimefunItem {
 		this.keys = null;
 		this.values = null;
 		this.ghost = ghost;
+		this.obtainable = true;
 		this.replacing = false;
 		this.enchantable = true;
 		this.disenchantable = true;
@@ -185,6 +190,7 @@ public class SlimefunItem {
 			all.add(this);
 			
 			SlimefunStartup.getItemCfg().setDefaultValue(this.name + ".enabled", true);
+			SlimefunStartup.getItemCfg().setDefaultValue(this.name + ".can-be-obtained", this.obtainable);
 			SlimefunStartup.getItemCfg().setDefaultValue(this.name + ".can-be-used-in-workbenches", this.replacing);
 			SlimefunStartup.getItemCfg().setDefaultValue(this.name + ".allow-enchanting", this.enchantable);
 			SlimefunStartup.getItemCfg().setDefaultValue(this.name + ".allow-disenchanting", this.disenchantable);
@@ -205,6 +211,7 @@ public class SlimefunItem {
 			}
 			else if (SlimefunStartup.getItemCfg().getBoolean(this.name + ".enabled")) {
 				if (!Category.list().contains(category)) category.register();
+				this.obtainable = SlimefunStartup.getItemCfg().getBoolean(this.name + ".can-be-obtained");
 				this.replacing = SlimefunStartup.getItemCfg().getBoolean(this.name + ".can-be-used-in-workbenches");
 				this.enchantable = SlimefunStartup.getItemCfg().getBoolean(this.name + ".allow-enchanting");
 				this.disenchantable = SlimefunStartup.getItemCfg().getBoolean(this.name + ".allow-disenchanting");
@@ -281,22 +288,24 @@ public class SlimefunItem {
 			ItemStack output = this.item.clone();
 			if (getCustomOutput() != null) output = this.recipeOutput.clone();
 			
-			if (this.getRecipeType().toItem().isSimilar(RecipeType.NULL.toItem()));
-			else if (this.getRecipeType().toItem().isSimilar(RecipeType.MOB_DROP.toItem())) {
-				try {
-					EntityType entity = EntityType.valueOf(ChatColor.stripColor(recipe[4].getItemMeta().getDisplayName()).toUpperCase().replace(" ", "_"));
-					List<ItemStack> dropping = new ArrayList<ItemStack>();
-					if (SlimefunManager.drops.containsKey(entity)) dropping = SlimefunManager.drops.get(entity);
-					dropping.add(output);
-					SlimefunManager.drops.put(entity, dropping);
-				} catch(Exception x) {
-				}
-			}
-			else if (this.getRecipeType().toItem().isSimilar(RecipeType.ANCIENT_ALTAR.toItem())) {
-				new AltarRecipe(Arrays.asList(this.getRecipe()), output);
-			}
-			else if (this.getRecipeType().getMachine() != null && getByName(this.getRecipeType().getMachine().getName()) instanceof SlimefunMachine) {
-				((SlimefunMachine) getByName(this.getRecipeType().getMachine().getName())).addRecipe(recipe, output);
+			if(obtainable){
+			    if (this.getRecipeType().toItem().isSimilar(RecipeType.NULL.toItem()));
+			    else if (this.getRecipeType().toItem().isSimilar(RecipeType.MOB_DROP.toItem())) {
+			        try {
+			            EntityType entity = EntityType.valueOf(ChatColor.stripColor(recipe[4].getItemMeta().getDisplayName()).toUpperCase().replace(" ", "_"));
+			            List<ItemStack> dropping = new ArrayList<ItemStack>();
+			            if (SlimefunManager.drops.containsKey(entity)) dropping = SlimefunManager.drops.get(entity);
+			            dropping.add(output);
+			            SlimefunManager.drops.put(entity, dropping);
+			        } catch(Exception x) {
+			        }
+			    }
+			    else if (this.getRecipeType().toItem().isSimilar(RecipeType.ANCIENT_ALTAR.toItem())) {
+			        new AltarRecipe(Arrays.asList(this.getRecipe()), output);
+			    }
+			    else if (this.getRecipeType().getMachine() != null && getByName(this.getRecipeType().getMachine().getName()) instanceof SlimefunMachine) {
+			        ((SlimefunMachine) getByName(this.getRecipeType().getMachine().getName())).addRecipe(recipe, output);
+			    }
 			}
 			this.install();
 		} catch(Exception x) {
@@ -328,6 +337,10 @@ public class SlimefunItem {
 	public void install() {}
 	public void create()  {}
 	
+	public boolean isObtainable() {
+        return obtainable;
+    }
+	
 	public boolean isReplacing() {
 		return replacing;
 	}
@@ -339,6 +352,10 @@ public class SlimefunItem {
 	public boolean isDisenchantable() {
 		return disenchantable;
 	}
+	
+	public void setObtainable(boolean obtainable) {
+        this.obtainable = obtainable;
+    }
 	
 	public void setReplacing(boolean replacing) {
 		this.replacing = replacing;
