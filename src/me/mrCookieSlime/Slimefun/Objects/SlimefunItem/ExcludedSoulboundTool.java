@@ -6,14 +6,19 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.Interfaces.NotPlaceable;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class ExcludedSoulboundTool extends SoulboundItem implements NotPlaceable {
 
-	public ExcludedSoulboundTool(Category category, ItemStack item, String name, RecipeType type, ItemStack[] recipe) {
-		super(category, item, name, type, recipe);
+	public ExcludedSoulboundTool(Category category, ItemStack item, String id, RecipeType type, ItemStack[] recipe) {
+		super(category, item, id, type, recipe);
 	}
 	
-	public ExcludedSoulboundTool(Category category, ItemStack item, String name, ItemStack[] recipe) {
-		super(category, item, name, recipe);
+	public ExcludedSoulboundTool(Category category, ItemStack item, String id, ItemStack[] recipe) {
+		super(category, item, id, recipe);
 	}
 
 }

@@ -23,8 +23,7 @@ public class SeasonCategory extends Category {
 	/**
 	 * The constructor for a SeasonCategory.
 	 * <p>
-	 * See {@link Category#Category(ItemStack, int)} for more information about creating
-	 * a category.
+	 * See {@link Category} for more information about creating a category.
 	 * 
 	 * @param month The month when the category should be displayed (from 1 = January ; to 12 = December)
 	 * @param tier The tier for this category
@@ -46,7 +45,7 @@ public class SeasonCategory extends Category {
 	 * @see #isUnlocked()
 	 */
 	public int getMonth() {
-		return this.month;
+		return month;
 	}
 
 	/**

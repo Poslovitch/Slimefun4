@@ -28,10 +28,9 @@ public class LockedCategory extends Category {
 	/**
 	 * The basic constructor for a LockedCategory.
 	 * <p>
-	 * See {@link Category#Category(ItemStack, int)} for more information about creating
-	 * a category.
-	 * <p>
 	 * Like {@link Category#Category(ItemStack)}, the tier is automatically set to 3.
+	 * <p>
+	 * See {@link Category} for more information about creating a category.
 	 * 
 	 * @param item The display item for this category
 	 * @param parents The parent categories for this category
@@ -47,8 +46,7 @@ public class LockedCategory extends Category {
 	/**
 	 * The constructor for a LockedCategory.
 	 * <p>
-	 * See {@link Category#Category(ItemStack, int)} for more information about creating
-	 * a category.
+	 * See {@link Category} for more information about creating a category.
 	 * 
 	 * @param item The display item for this category
 	 * @param tier The tier of this category

@@ -5,18 +5,21 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class JetBoots extends DamagableChargableItem {
 	
-	double speed;
+	private double speed;
 
-	public JetBoots(ItemStack item, String name, ItemStack[] recipe, double speed) {
-		super(Categories.TECH, item, name, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, "Jet Boots");
+	public JetBoots(ItemStack item, String id, ItemStack[] recipe, double speed) {
+		super(Categories.TECH, item, id, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, "Jet Boots");
 		this.speed = speed;
 	}
 	
 	public double getSpeed() {
 		return speed;
 	}
-	
-
 }

@@ -5,14 +5,22 @@ import org.bukkit.inventory.ItemStack;
 import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 import me.mrCookieSlime.Slimefun.Objects.Category;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class SlimefunBackpack extends SlimefunItem {
 	
-	public int size;
+	private int size;
 
-	public SlimefunBackpack(int size, Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
-		super(category, item, name, recipeType, recipe);
+	public SlimefunBackpack(int size, Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
+		super(category, item, id, recipeType, recipe);
 		
 		this.size = size;
 	}
 
+	public int getSize() {
+		return size;
+	}
 }

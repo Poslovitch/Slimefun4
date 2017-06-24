@@ -16,9 +16,7 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * Statically handles categories. Represents a category, which structure
- * multiple {@link SlimefunItem} in the Slimefun Guide.
- * <p>
- * See {@link #Category(ItemStack)} to create a category.
+ * multiple {@link SlimefunItem} in the Guide.
  * <p>
  * See {@link Categories} for the built-in categories.
  * 
@@ -165,7 +163,7 @@ public class Category {
 	 * @since 4.0
 	 */
 	public List<SlimefunItem> getItems() {
-		return this.items;
+		return items;
 	}
 
 	/**

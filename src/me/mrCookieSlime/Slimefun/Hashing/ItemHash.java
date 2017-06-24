@@ -38,7 +38,7 @@ public class ItemHash {
 		StringBuilder builder = new StringBuilder(LENGTH * 2);
 		
 		for (char c: item.hash.toCharArray()) {
-			builder.append('§');
+			builder.append('ï¿½');
 			builder.append(c);
 		}
 		
@@ -47,7 +47,7 @@ public class ItemHash {
 	public static SlimefunItem fromString(String input) {
 		if (input == null || input.length() != LENGTH * 2) return null;
 		
-		String hex = input.replaceAll("§", "");
+		String hex = input.replaceAll("ï¿½", "");
 		
 		if (hex.length() != LENGTH || !map.containsKey(hex)) return null;
 		
@@ -55,9 +55,9 @@ public class ItemHash {
 	}
 	
 	public static void register(SlimefunItem item) {
-		String hash = hash(item.getName());
+		String hash = hash(item.getID());
 		
-		if (map.containsKey(hash) && !item.getName().equals(map.get(hash).hash)) {
+		if (map.containsKey(hash) && !item.getID().equals(map.get(hash).hash)) {
 			System.out.println("FATAL Security ERROR - Slimefun was disabled.");
 			Bukkit.getPluginManager().disablePlugin(SlimefunStartup.instance);
 			throw new IllegalStateException("Hash Collision: " + hash);

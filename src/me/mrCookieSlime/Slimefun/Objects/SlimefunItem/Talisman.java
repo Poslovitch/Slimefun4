@@ -23,16 +23,21 @@ import org.bukkit.event.player.PlayerEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.potion.PotionEffect;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class Talisman extends SlimefunItem {
 	
-	boolean consumed;
-	boolean cancel;
-	PotionEffect[] effects;
-	String suffix;
-	int chance;
+	private boolean consumed;
+	private boolean cancel;
+	private PotionEffect[] effects;
+	private String suffix;
+	private int chance;
 
-	public Talisman(ItemStack item, String name, ItemStack[] recipe, boolean consumable, boolean cancelEvent, String messageSuffix, PotionEffect... effects) {
-		super(Categories.TALISMANS_1, item, name, RecipeType.MAGIC_WORKBENCH, recipe, new CustomItem(item, consumable ? 4: 1));
+	public Talisman(ItemStack item, String id, ItemStack[] recipe, boolean consumable, boolean cancelEvent, String messageSuffix, PotionEffect... effects) {
+		super(Categories.TALISMANS_1, item, id, RecipeType.MAGIC_WORKBENCH, recipe, new CustomItem(item, consumable ? 4: 1));
 		this.consumed = consumable;
 		this.cancel = cancelEvent;
 		this.suffix = messageSuffix;
@@ -40,8 +45,8 @@ public class Talisman extends SlimefunItem {
 		this.chance = 100;
 	}
 	
-	public Talisman(ItemStack item, String name, ItemStack[] recipe, boolean consumable, boolean cancelEvent, String messageSuffix, int chance, PotionEffect... effects) {
-		super(Categories.TALISMANS_1, item, name, RecipeType.MAGIC_WORKBENCH, recipe, new CustomItem(item, consumable ? 4: 1));
+	public Talisman(ItemStack item, String id, ItemStack[] recipe, boolean consumable, boolean cancelEvent, String messageSuffix, int chance, PotionEffect... effects) {
+		super(Categories.TALISMANS_1, item, id, RecipeType.MAGIC_WORKBENCH, recipe, new CustomItem(item, consumable ? 4: 1));
 		this.consumed = consumable;
 		this.cancel = cancelEvent;
 		this.suffix = messageSuffix;
@@ -49,8 +54,8 @@ public class Talisman extends SlimefunItem {
 		this.chance = chance;
 	}
 	
-	public Talisman(ItemStack item, String name, ItemStack[] recipe, String messageSuffix, int chance, PotionEffect... effects) {
-		super(Categories.TALISMANS_1, item, name, RecipeType.MAGIC_WORKBENCH, recipe, item);
+	public Talisman(ItemStack item, String id, ItemStack[] recipe, String messageSuffix, int chance, PotionEffect... effects) {
+		super(Categories.TALISMANS_1, item, id, RecipeType.MAGIC_WORKBENCH, recipe, item);
 		this.consumed = true;
 		this.cancel = true;
 		this.suffix = messageSuffix;
@@ -58,17 +63,32 @@ public class Talisman extends SlimefunItem {
 		this.chance = chance;
 	}
 	
-	public PotionEffect[] getEffects()	{		return this.effects;	}
-	public boolean isConsumable()	 	{		return this.consumed;	}
-	public boolean isEventCancelled() 	{		return this.cancel;		}
-	public String getSuffix() 			{		return this.suffix;		}
-	public int getChance()				{		return this.chance;		}
+	public PotionEffect[] getEffects() {
+		return effects;	
+	}
+	
+	public boolean isConsumable() {
+		return consumed;	
+	}
+	
+	public boolean isEventCancelled() {		
+		return cancel;
+	}
+	
+	public String getSuffix() {		
+		return suffix;		
+	}
+	
+	public int getChance() { 
+		return chance;		
+	}
 
 	public static boolean checkFor(Event e, SlimefunItem talisman) {
 		if (talisman != null) {
 			if (talisman instanceof Talisman) {
-				boolean message = ((Talisman) talisman).getSuffix().equalsIgnoreCase("") ? false: true;
-				if (SlimefunStartup.chance(100, ((Talisman) talisman).getChance())) {
+				Talisman t = (Talisman) talisman;
+				boolean message = t.getSuffix().equalsIgnoreCase("") ? false: true;
+				if (SlimefunStartup.chance(100, t.getChance())) {
 					Player p = null;
 					
 					if (e instanceof EntityDeathEvent) p = ((EntityDeathEvent) e).getEntity().getKiller();
@@ -79,35 +99,35 @@ public class Talisman extends SlimefunItem {
 					
 					boolean pass = true;
 					
-					for (PotionEffect effect: ((Talisman) talisman).getEffects()) {
+					for (PotionEffect effect: t.getEffects()) {
 						if (effect != null) if (p.hasPotionEffect(effect.getType())) pass = false;
 					}
 					
 					if (pass) {
-						if (p.getInventory().containsAtLeast(talisman.getItem(), 1)) {
-							if (Slimefun.hasUnlocked(p, talisman.getItem(), true)) {
-								if (((Talisman) talisman).isConsumable()) p.getInventory().removeItem(talisman.getItem());
-								for (PotionEffect effect: ((Talisman) talisman).getEffects()) {
+						if (p.getInventory().containsAtLeast(t.getItem(), 1)) {
+							if (Slimefun.hasUnlocked(p, t.getItem(), true)) {
+								if (t.isConsumable()) p.getInventory().removeItem(t.getItem());
+								for (PotionEffect effect: t.getEffects()) {
 									p.addPotionEffect(effect);
 								}
 								
-								if (e instanceof Cancellable && ((Talisman) talisman).isEventCancelled()) ((Cancellable) e).setCancelled(true);
+								if (e instanceof Cancellable && t.isEventCancelled()) ((Cancellable) e).setCancelled(true);
 								
-								if (message) Messages.local.sendTranslation(p, "messages.talisman." + ((Talisman) talisman).getSuffix(),true);
+								if (message) Messages.local.sendTranslation(p, "messages.talisman." + t.getSuffix(),true);
 								
 								return true;
 							}
 							else return false;
 						}
-						else if (p.getEnderChest().containsAtLeast(((Talisman) talisman).upgrade(), 1)) {
-							if (Slimefun.hasUnlocked(p, ((Talisman) talisman).upgrade(), true)) {
-								if (((Talisman) talisman).isConsumable()) p.getEnderChest().removeItem(((Talisman) talisman).upgrade());
-								for (PotionEffect effect: ((Talisman) talisman).getEffects()) {
+						else if (p.getEnderChest().containsAtLeast(t.upgrade(), 1)) {
+							if (Slimefun.hasUnlocked(p, t.upgrade(), true)) {
+								if (t.isConsumable()) p.getEnderChest().removeItem(t.upgrade());
+								for (PotionEffect effect: t.getEffects()) {
 									p.addPotionEffect(effect);
 								}
-								if (e instanceof Cancellable && ((Talisman) talisman).isEventCancelled()) ((Cancellable) e).setCancelled(true);
+								if (e instanceof Cancellable && t.isEventCancelled()) ((Cancellable) e).setCancelled(true);
 								
-								if (message) Messages.local.sendTranslation(p, "messages.talisman." + ((Talisman) talisman).getSuffix(), true);
+								if (message) Messages.local.sendTranslation(p, "messages.talisman." + t.getSuffix(), true);
 								
 								return true;
 							}
@@ -146,11 +166,11 @@ public class Talisman extends SlimefunItem {
 		EnderTalisman talisman = (EnderTalisman) SlimefunItem.getByItem(upgrade());
 		Research research = Research.getByID(112);
 		if (talisman != null) {
-			Slimefun.addOfficialWikiPage(talisman.getName(), "Talismans");
+			Slimefun.addOfficialWikiPage(talisman.getID(), "Talismans");
 			if (research != null) talisman.bindToResearch(research);
 		}
 		
-		Slimefun.addOfficialWikiPage(getName(), "Talismans");
+		Slimefun.addOfficialWikiPage(getID(), "Talismans");
 	}
 
 }

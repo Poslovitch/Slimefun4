@@ -5,13 +5,19 @@ import me.mrCookieSlime.Slimefun.Objects.Category;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class SoulboundBackpack extends SlimefunBackpack {
 
-	public SoulboundBackpack(int size, Category category, ItemStack item, String name, ItemStack[] recipe) {
-		super(size, category, item, name, RecipeType.MAGIC_WORKBENCH, recipe);
+	public SoulboundBackpack(int size, Category category, ItemStack item, String id, ItemStack[] recipe) {
+		super(size, category, item, id, RecipeType.MAGIC_WORKBENCH, recipe);
 	}
-	public SoulboundBackpack(int size, Category category, ItemStack item, String name, RecipeType type, ItemStack[] recipe) {
-		super(size, category, item, name, type, recipe);
+	
+	public SoulboundBackpack(int size, Category category, ItemStack item, String id, RecipeType type, ItemStack[] recipe) {
+		super(size, category, item, id, type, recipe);
 	}
 
 }

@@ -204,8 +204,8 @@ public class Research {
 	 */
 	public boolean hasUnlocked(UUID uuid) {
 		if (!enabled) return true;
-		if (!SlimefunStartup.getResearchCfg().getBoolean(this.id + ".enabled")) return true;
-		return new Config(new File("data-storage/Slimefun/Players/" + uuid.toString() + ".yml")).contains("researches." + this.id);
+		if (!SlimefunStartup.getResearchCfg().getBoolean(id + ".enabled")) return true;
+		return new Config(new File("data-storage/Slimefun/Players/" + uuid.toString() + ".yml")).contains("researches." + id);
 	}
 
 	/**
@@ -218,8 +218,8 @@ public class Research {
 	 */
 	public boolean canUnlock(Player p) {
 		if (!enabled) return true;
-		if (!SlimefunStartup.getResearchCfg().getBoolean(this.id + ".enabled")) return true;
-		return (p.getGameMode() == GameMode.CREATIVE && creative_research) || p.getLevel() >= this.cost;
+		if (!SlimefunStartup.getResearchCfg().getBoolean(id + ".enabled")) return true;
+		return (p.getGameMode() == GameMode.CREATIVE && creative_research) || p.getLevel() >= cost;
 	}
 
 	/**
@@ -249,7 +249,7 @@ public class Research {
 			ResearchUnlockEvent event = new ResearchUnlockEvent(p, this);
 			Bukkit.getPluginManager().callEvent(event);
 			if (!event.isCancelled()) {
-				final int research = this.id;
+				final int research = id;
 				if (instant) {
 					Config cfg = new Config(new File("data-storage/Slimefun/Players/" + p.getUniqueId() + ".yml"));
 					cfg.setValue("researches." + research, true);
@@ -317,7 +317,7 @@ public class Research {
 	public void register() {
 		SlimefunStartup.getResearchCfg().setDefaultValue("enable-researching", true);
 
-		if (SlimefunStartup.getResearchCfg().contains(this.getID() + ".enabled") && !SlimefunStartup.getResearchCfg().getBoolean(this.getID() + ".enabled")) {
+		if (SlimefunStartup.getResearchCfg().contains(id + ".enabled") && !SlimefunStartup.getResearchCfg().getBoolean(id + ".enabled")) {
 			Iterator<SlimefunItem> iterator = items.iterator();
 			while (iterator.hasNext()) {
 				SlimefunItem item = iterator.next();
@@ -327,15 +327,15 @@ public class Research {
 			return;
 		}
 
-		SlimefunStartup.getResearchCfg().setDefaultValue(this.getID() + ".name", this.getName());
-		SlimefunStartup.getResearchCfg().setDefaultValue(this.getID() + ".cost", this.getCost());
-		SlimefunStartup.getResearchCfg().setDefaultValue(this.getID() + ".enabled", true);
+		SlimefunStartup.getResearchCfg().setDefaultValue(id + ".name", name);
+		SlimefunStartup.getResearchCfg().setDefaultValue(id + ".cost", cost);
+		SlimefunStartup.getResearchCfg().setDefaultValue(id + ".enabled", true);
 
-		this.name = SlimefunStartup.getResearchCfg().getString(this.getID() + ".name");
-		this.cost = SlimefunStartup.getResearchCfg().getInt(this.getID() + ".cost");
+		this.name = SlimefunStartup.getResearchCfg().getString(id + ".name");
+		this.cost = SlimefunStartup.getResearchCfg().getInt(id + ".cost");
 
 		list.add(this);
-		if (SlimefunStartup.getCfg().getBoolean("options.print-out-loading")) System.out.println("[Slimefun] Loaded Research \"" + this.getName() + "\"");
+		if (SlimefunStartup.getCfg().getBoolean("options.print-out-loading")) System.out.println("[Slimefun] Loaded Research \"" + name + "\"");
 	}
 
 	/**

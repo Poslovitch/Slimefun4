@@ -5,12 +5,17 @@ import me.mrCookieSlime.Slimefun.Objects.Category;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class ReplacingItem extends SlimefunItem {
 
-	public ReplacingItem(Category category, ItemStack item, String name, RecipeType recipeType, ItemStack[] recipe) {
-		super(category, item, name, recipeType, recipe);
+	public ReplacingItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
+		super(category, item, id, recipeType, recipe);
 		
-		this.replacing = true;
+		setReplacing(true);
 	}
 
 }

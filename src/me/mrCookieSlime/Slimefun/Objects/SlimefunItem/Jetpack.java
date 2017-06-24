@@ -5,12 +5,17 @@ import me.mrCookieSlime.Slimefun.Lists.RecipeType;
 
 import org.bukkit.inventory.ItemStack;
 
+/**
+ * 
+ * @author TheBusyBiscuit
+ * @since 4.0
+ */
 public class Jetpack extends DamagableChargableItem {
 	
-	double thrust;
+	private double thrust;
 
-	public Jetpack(ItemStack item, String name, ItemStack[] recipe, double thrust) {
-		super(Categories.TECH, item, name, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, "Jetpack");
+	public Jetpack(ItemStack item, String id, ItemStack[] recipe, double thrust) {
+		super(Categories.TECH, item, id, RecipeType.ENHANCED_CRAFTING_TABLE, recipe, "Jetpack");
 		this.thrust = thrust;
 	}
 	
