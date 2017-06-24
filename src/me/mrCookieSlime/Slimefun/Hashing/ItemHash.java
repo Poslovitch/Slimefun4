@@ -38,7 +38,7 @@ public class ItemHash {
 		StringBuilder builder = new StringBuilder(LENGTH * 2);
 		
 		for (char c: item.hash.toCharArray()) {
-			builder.append('�');
+			builder.append('§');
 			builder.append(c);
 		}
 		
@@ -47,7 +47,7 @@ public class ItemHash {
 	public static SlimefunItem fromString(String input) {
 		if (input == null || input.length() != LENGTH * 2) return null;
 		
-		String hex = input.replaceAll("�", "");
+		String hex = input.replaceAll("§", "");
 		
 		if (hex.length() != LENGTH || !map.containsKey(hex)) return null;
 		
