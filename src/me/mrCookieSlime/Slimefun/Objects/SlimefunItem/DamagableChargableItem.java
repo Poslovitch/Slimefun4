@@ -7,7 +7,6 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  */
 public class DamagableChargableItem extends SlimefunItem {

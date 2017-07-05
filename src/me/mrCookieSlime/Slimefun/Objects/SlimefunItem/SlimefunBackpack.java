@@ -7,7 +7,6 @@ import me.mrCookieSlime.Slimefun.Objects.Category;
 
 /**
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  */
 public class SlimefunBackpack extends SlimefunItem {

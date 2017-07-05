@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 
 /**
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  */
 public class SlimefunMachine extends SlimefunItem {

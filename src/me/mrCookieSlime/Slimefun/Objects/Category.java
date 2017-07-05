@@ -15,12 +15,11 @@ import me.mrCookieSlime.Slimefun.api.Slimefun;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Statically handles categories. Represents a category, which structure
- * multiple {@link SlimefunItem} in the Guide.
+ * Statically handles categories.
+ * Represents a category, which structure multiple {@link SlimefunItem} in the guide.
  * <p>
  * See {@link Categories} for the built-in categories.
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  * 
  * @see LockedCategory
@@ -205,15 +204,12 @@ public class Category {
 	}
 
 	/**
-	 * /!\ Documentation needed here.
 	 * 
-	 * @author TheBusyBiscuit
 	 * @since 4.0
 	 */
 	class CategorySorter implements Comparator<Category> {
 
 		/**
-		 * /!\ Documentation needed here.
 		 * 
 		 * @since 4.0
 		 */

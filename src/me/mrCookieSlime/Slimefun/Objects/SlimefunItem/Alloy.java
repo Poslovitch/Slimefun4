@@ -7,50 +7,33 @@ import me.mrCookieSlime.Slimefun.Objects.Category;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * Subclass of SlimefunItem. 
- * <br>
- * Represents an alloy that is only craftable in the {@link RecipeType#SMELTERY}.
+ * Subclass of {@link SlimefunItem} representing an Alloy, obtainable using the {@code SMELTERY}.
  * <p>
- * See {@link SlimefunItem} for the complete documentation.
+ * An alloy is generally made up of several minerals.
+ * As an example, {@code BRASS_INGOT} is made up of {@code COPPER_DUST}, {@code ZINC_DUST} and {@code COPPER_INGOT}.
  * 
- * @author TheBusyBiscuit
  * @since 4.0
- * @see SlimefunItem
  */
 public class Alloy extends SlimefunItem {
 
 	/**
-	 * Constructor for an Alloy.
-	 * <p>
-	 * It automatically defines {@link Category} to {@link Categories#RESOURCES} and {@link RecipeType} to {@link RecipeType#SMELTERY}.
-	 * <p>
-	 * See {@link SlimefunItem} for more information about creating an item.
+	 * Constructs an Alloy automatically bound to {@code Categories.RESOURCES}.
 	 * 
-	 * @param item ItemStack for the Alloy
-	 * @param id
-	 * @param recipe
-	 * 
-	 * @since 4.0
-	 * @see #Alloy(Category, ItemStack, String, ItemStack[])
+	 * @param  item    the item corresponding to this Alloy
+	 * @param  id      the id of this Alloy
+	 * @param  recipe  the recipe to obtain this Alloy in the Smeltery
 	 */
 	public Alloy(ItemStack item, String id, ItemStack[] recipe) {
 		super(Categories.RESOURCES, item, id, RecipeType.SMELTERY, recipe);
 	}
 	
 	/**
-	 * Constructor for an Alloy.
-	 * <p>
-	 * It automatically defines {@link RecipeType} to {@link RecipeType#SMELTERY}.
-	 * <p>
-	 * See {@link SlimefunItem} for more information about creating an item.
+	 * Constructs an Alloy with a definable {@link Category}.
 	 * 
-	 * @param category
-	 * @param item
-	 * @param id
-	 * @param recipe
-	 * 
-	 * @since 4.0
-	 * @see #Alloy(ItemStack, String, ItemStack[])
+	 * @param  category  the category to bind this Alloy to
+	 * @param  item      the item corresponding to this Alloy
+	 * @param  id        the id of this Alloy
+	 * @param  recipe    the recipe to obtain this Alloy in the Smeltery
 	 */
 	public Alloy(Category category, ItemStack item, String id, ItemStack[] recipe) {
 		super(category, item, id, RecipeType.SMELTERY, recipe);

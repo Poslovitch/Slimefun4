@@ -34,21 +34,59 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.inventory.ItemStack;
 
 /**
- * 
- * @author TheBusyBiscuit
+ * TODO
  * @since 4.0
  */
 public class SlimefunItem {
 	
+	/**
+	 * Lists all the enabled Slimefun items.
+	 */
 	public static List<SlimefunItem> items = new ArrayList<SlimefunItem>();
 	
+	/**
+	 * Stores the URID corresponding to an item ID.
+	 * 
+	 * @deprecated As of 4.1.10, renamed to {@link SlimefunItem#map_id} for better name convenience
+	 */
+	@Deprecated
+	public static Map<String, URID> map_name = new HashMap<String, URID>();
+	
+	/**
+	 * Stores the URID corresponding to an item ID.
+	 * 
+	 * @since 4.1.10, rename of {@linkplain SlimefunItem#map_name}
+	 */
 	public static Map<String, URID> map_id = new HashMap<String, URID>();
+	
+	/**
+	 * Lists radioactive ItemStacks.
+	 */
 	public static List<ItemStack> radioactive = new ArrayList<ItemStack>();
+	
+	/**
+	 * Counts the enabled Slimefun items that are not added by addons.
+	 */
 	public static int vanilla = 0;
+	
+	/**
+	 * TODO
+	 */
 	public static Set<String> tickers = new HashSet<String>();
 	
+	/**
+	 * Lists all Slimefun items (even disabled one).
+	 */
 	public static List<SlimefunItem> all = new ArrayList<SlimefunItem>();
+	
+	/**
+	 * TODO
+	 */
 	public static Map<String, Set<ItemHandler>> handlers = new HashMap<String, Set<ItemHandler>>();
+	
+	/**
+	 * TODO
+	 */
 	public static Map<String, SlimefunBlockHandler> blockhandler = new HashMap<String, SlimefunBlockHandler>();
 	
 	private ItemStack item;
@@ -71,30 +109,116 @@ public class SlimefunItem {
 	
 	private State state;
 	
+	/**
+	 * Defines whether a SlimefunItem is enabled, disabled or fall-backed on its vanilla behavior.
+	 * 
+	 * @since 4.1.10
+	 */
 	public enum State {
+		/**
+		 * This SlimefunItem is enabled.
+		 */
 	    ENABLED,
+	    
+	    /**
+	     * This SlimefunItem is disabled and is not a {@link VanillaItem}.
+	     */
 	    DISABLED,
+	    
+	    /**
+	     * This SlimefunItem is fall-backed on its vanilla behavior, because it is disabled and is a {@link VanillaItem}.
+	     */
 	    VANILLA;
 	}
 	
-	public ItemStack getItem()			{		return item;			}
+	/**
+	 * Returns the ItemStack corresponding to this SlimefunItem.
+	 * 
+	 * @return the ItemStack corresponding to this SlimefunItem
+	 */
+	public ItemStack getItem() 			{		return item; 			}
+	
+	/**
+	 * Returns the Category this SlimefunItem is bound to.
+	 * 
+	 * @return the Category this SlimefunItem is bound to
+	 */
 	public Category getCategory()		{		return category;		}
+	
+	/**
+	 * Returns the custom recipe output of this SlimefunItem.
+	 * 
+	 * @return the custom recipe output of this SlimefunItem
+	 */
 	public ItemStack getCustomOutput()	{		return recipeOutput;	}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
 	public ItemStack[] getRecipe()		{		return recipe;			}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
 	public RecipeType getRecipeType()	{		return recipeType;		}
+	
+	/**
+	 * Returns the ID of this SlimefunItem.
+	 * 
+	 * @return the ID of this SlimefunItem
+	 * 
+	 * @deprecated As of 4.1.10, renamed to {@link SlimefunItem#getID()} for better name convenience
+	 */
 	@Deprecated
-	public String getName()				{		return id;			}
-	public String getID() {
-		return id;
-	}
+	public String getName()				{		return id;				}
+	
+	/**
+	 * Returns the ID of this SlimefunItem.
+	 * 
+	 * @return the ID of this SlimefunItem
+	 * 
+	 * @since 4.1.10, rename of {@link SlimefunItem#getName()}
+	 */
+	public String getID() 				{		return id;				}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
 	public String[] listKeys()			{		return keys;			}
+	
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Object[] listValues()		{		return values;			}
+	
+	/**
+	 * Returns the Research this SlimefunItem is bound to.
+	 * 
+	 * @return the Research this SlimefunItem is bound to
+	 */
 	public Research getResearch()		{		return research;		}
 	
+	/**
+	 * TODO
+	 * @return
+	 */
 	public Set<ItemHandler> getHandlers() {
 		return itemhandlers;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 * @param item
+	 * @param id
+	 * @param recipeType
+	 * @param recipe
+	 */
 	public SlimefunItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe) {
 		this.item = item;
 		this.category = category;
@@ -113,6 +237,16 @@ public class SlimefunItem {
 		urid = URID.nextURID(this, false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 * @param item
+	 * @param id
+	 * @param recipeType
+	 * @param recipe
+	 * @param recipeOutput
+	 */
 	public SlimefunItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe, ItemStack recipeOutput) {
 		this.item = item;
 		this.category = category;
@@ -131,6 +265,18 @@ public class SlimefunItem {
 		urid = URID.nextURID(this, false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 * @param item
+	 * @param id
+	 * @param recipeType
+	 * @param recipe
+	 * @param recipeOutput
+	 * @param keys
+	 * @param values
+	 */
 	public SlimefunItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe, ItemStack recipeOutput, String[] keys, Object[] values) {
 		this.item = item;
 		this.category = category;
@@ -149,6 +295,17 @@ public class SlimefunItem {
 		urid = URID.nextURID(this, false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 * @param item
+	 * @param id
+	 * @param recipeType
+	 * @param recipe
+	 * @param keys
+	 * @param values
+	 */
 	public SlimefunItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe, String[] keys, Object[] values) {
 		this.item = item;
 		this.category = category;
@@ -167,6 +324,16 @@ public class SlimefunItem {
 		urid = URID.nextURID(this, false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 * @param item
+	 * @param id
+	 * @param recipeType
+	 * @param recipe
+	 * @param ghost
+	 */
 	public SlimefunItem(Category category, ItemStack item, String id, RecipeType recipeType, ItemStack[] recipe, boolean ghost) {
 		this.item = item;
 		this.category = category;
@@ -185,10 +352,18 @@ public class SlimefunItem {
 		urid = URID.nextURID(this, false);
 	}
 	
+	/**
+	 * TODO
+	 */
 	public void register() {
 		register(false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 */
 	public void register(boolean slimefun) {
 		addon = !slimefun;
 		try {
@@ -247,40 +422,93 @@ public class SlimefunItem {
 		}
 	}
 	
+	/**
+	 * TODO
+	 * Returns the list of enabled Slimefun items.
+	 * 
+	 * @return the list of enabled Slimefun items
+	 */
 	public static List<SlimefunItem> list() {
 		return items;
 	}
 	
-	public void bindToResearch(Research r) {
-		if (r != null) r.getEffectedItems().add(this);
-		this.research = r;
+	/**
+	 * TODO
+	 * 
+	 * @param research
+	 */
+	public void bindToResearch(Research research) {
+		if (research != null) research.getEffectedItems().add(this);
+		this.research = research;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param recipe
+	 */
 	public void setRecipe(ItemStack[] recipe) {
 		this.recipe = recipe;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param type
+	 */
 	public void setRecipeType(RecipeType type) {
 		this.recipeType = type;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param category
+	 */
 	public void setCategory(Category category) {
 		this.category = category;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param output
+	 */
 	public void setRecipeOutput(ItemStack output) {
 		this.recipeOutput = output;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param name
+	 * @return
+	 * 
+	 * @deprecated As of 4.1.10, renamed to {@link SlimefunItem#getByID(String)} for better name convenience
+	 */
 	@Deprecated
 	public static SlimefunItem getByName(String name) {
 		return (SlimefunItem) URID.decode(map_id.get(name));
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param id
+	 * @return
+	 * 
+	 * @since 4.1.10, rename of {@link SlimefunItem#getByName(String)}
+	 */
 	public static SlimefunItem getByID(String id) {
 		return (SlimefunItem) URID.decode(map_id.get(id));
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 * @return
+	 */
 	public static SlimefunItem getByItem(ItemStack item) {
 		if (item == null) return null;
 		for (SlimefunItem sfi: items) {
@@ -293,6 +521,12 @@ public class SlimefunItem {
 		return null;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 * @return
+	 */
 	public boolean isItem(ItemStack item) {
 		if (item == null) return false;
 		if (this instanceof ChargableItem && SlimefunManager.isItemSimiliar(item, this.getItem(), false)) return true;
@@ -302,6 +536,9 @@ public class SlimefunItem {
 		else return false;
 	}
 	
+	/**
+	 * TODO
+	 */
 	public void load() {
 		try {
 			if (!ghost) category.add(this);
@@ -331,6 +568,14 @@ public class SlimefunItem {
 		}
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 * @return
+	 * 
+	 * @since 4.1.10
+	 */
 	public static State getState(ItemStack item) {
 	    for (SlimefunItem i: all) {
             if (i.isItem(item)) {
@@ -340,6 +585,14 @@ public class SlimefunItem {
         return State.ENABLED;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 * @return
+	 * 
+	 * @since 4.1.10
+	 */
 	public static boolean isDisabled(ItemStack item) {
 	    for (SlimefunItem i: all) {
 			if (i.isItem(item)) {
@@ -349,33 +602,81 @@ public class SlimefunItem {
 	    return false;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 * 
+	 * @since 4.1.10
+	 */
 	public State getState(){
 	    return state;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 * 
+	 * @since 4.1.10
+	 */
 	public boolean isDisabled(){
 	    return state != State.ENABLED;
 	}
 	
+	/**
+	 * TODO
+	 */
 	public void install() {}
+	
+	/**
+	 * TODO
+	 */
 	public void create()  {}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public boolean isReplacing() {
 		return replacing;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public boolean isEnchantable() {
 	    return enchantable;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 * 
+	 * @since 4.1.10
+	 */
 	public boolean isDisenchantable() {
 		return disenchantable;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param replacing
+	 */
 	public void setReplacing(boolean replacing) {
 		this.replacing = replacing;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param handler
+	 */
 	public void addItemHandler(ItemHandler... handler) {
 		itemhandlers.addAll(Arrays.asList(handler));
 		
@@ -392,40 +693,85 @@ public class SlimefunItem {
 		}
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param vanilla
+	 * @param handlers
+	 */
 	public void register(boolean vanilla, ItemHandler... handlers) {
 		addItemHandler(handlers);
 		register(vanilla);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param handlers
+	 */
 	public void register(ItemHandler... handlers) {
 		addItemHandler(handlers);
 		register(false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param vanilla
+	 * @param handler
+	 */
 	public void register(boolean vanilla, SlimefunBlockHandler handler) {
 		blockhandler.put(getID(), handler);
 		register(vanilla);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param handler
+	 */
 	public void register(SlimefunBlockHandler handler) {
 		blockhandler.put(getID(), handler);
 		register(false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param codename
+	 * @return
+	 */
 	public static Set<ItemHandler> getHandlers(String codename) {
 		if (handlers.containsKey(codename)) return handlers.get(codename);
 		else return new HashSet<ItemHandler>();
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 */
 	public static void setRadioactive(ItemStack item) {
 		radioactive.add(item);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param id
+	 * @return
+	 */
 	public static ItemStack getItem(String id) {
 		SlimefunItem item = getByID(id);
 		return item != null ? item.getItem(): null;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param id
+	 * @param stack
+	 */
 	public static void patchExistingItem(String id, ItemStack stack) {
 		SlimefunItem item = getByID(id);
 		if (item != null) {
@@ -444,78 +790,188 @@ public class SlimefunItem {
 		}
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param capacity
+	 */
 	public void registerChargeableBlock(int capacity) {
 		registerChargeableBlock(false, capacity);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 * @param capacity
+	 */
 	public void registerChargeableBlock(boolean slimefun, int capacity) {
 		register(slimefun);
 		ChargableBlock.registerChargableBlock(id, capacity, true);
 		EnergyNet.registerComponent(id, NetworkComponent.CONSUMER);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 * @param capacity
+	 */
 	public void registerUnrechargeableBlock(boolean slimefun, int capacity) {
 		register(slimefun);
 		ChargableBlock.registerChargableBlock(id, capacity, false);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 * @param capacity
+	 */
 	public void registerBlockCapacitor(boolean slimefun, int capacity) {
 		register(slimefun);
 		ChargableBlock.registerCapacitor(id, capacity);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 */
 	public void registerEnergyDistributor(boolean slimefun) {
 		register(slimefun);
 		EnergyNet.registerComponent(id, NetworkComponent.DISTRIBUTOR);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 * @param capacity
+	 * 
+	 * @deprecated As of 4.1.10, renamed to {@link SlimefunItem#registerDistributingCapacitor(boolean, int)} due to a typing mistake
+	 */
+	@Deprecated
 	public void registerDistibutingCapacitor(boolean slimefun, final int capacity) {
 		register(slimefun);
 		EnergyNet.registerComponent(id, NetworkComponent.DISTRIBUTOR);
 		ChargableBlock.registerCapacitor(id, capacity);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param slimefun
+	 * @param capacity
+	 * 
+	 * @since 4.1.10, rename of {@link SlimefunItem#registerDistibutingCapacitor(boolean, int)}
+	 */
+	public void registerDistributingCapacitor(boolean slimefun, final int capacity) {
+		register(slimefun);
+		EnergyNet.registerComponent(id, NetworkComponent.DISTRIBUTOR);
+		ChargableBlock.registerCapacitor(id, capacity);
+	}
+	
+	/**
+	 * TODO
+	 * 
+	 * @param stack
+	 */
 	protected void setItem(ItemStack stack) {
 		this.item = stack;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public URID getURID() {
 		return urid;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public boolean isTicking() {
 		return ticking;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param item
+	 * @return
+	 */
 	public static boolean isTicking(String item) {
 		return tickers.contains(item);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @return
+	 */
 	public BlockTicker getTicker() {
 		return ticker;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param id
+	 * @param handler
+	 */
 	public static void registerBlockHandler(String id, SlimefunBlockHandler handler) {
 		blockhandler.put(id, handler);
 	}
 
+	/**
+	 * TODO
+	 * 
+	 * @param vanilla
+	 * @param capacity
+	 * @param handlers
+	 */
 	public void registerChargeableBlock(boolean vanilla, int capacity, ItemHandler... handlers) {
 		addItemHandler(handlers);
 		registerChargeableBlock(vanilla, capacity);
 	}
 
+	/**
+	 * TODO
+	 */
 	public EnergyTicker getEnergyTicker() {
 		return energy;
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param b
+	 * @return
+	 */
 	public BlockMenu getBlockMenu(Block b) {
 		return BlockStorage.getInventory(b);
 	}
 	
+	/**
+	 * TODO
+	 * 
+	 * @param page
+	 */
 	public void addWikipage(String page) {
-		Slimefun.addWikiPage(getID(), "https://github.com/mrCookieSlime/Slimefun4/wiki/" + page);
+		Slimefun.addWikiPage(id, "https://github.com/mrCookieSlime/Slimefun4/wiki/" + page);
 	}
 	
+	/**
+	 * Returns true if this SlimefunItem has been registered by an addon.
+	 * 
+	 * @return true if this SlimefunItem has been registered by an addon;
+	 *         false otherwise
+	 */
 	public boolean isAddonItem() {
 		return addon;
 	}

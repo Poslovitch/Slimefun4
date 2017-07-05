@@ -8,7 +8,6 @@ import me.mrCookieSlime.Slimefun.Objects.SlimefunItem.Interfaces.NotPlaceable;
 
 /**
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  */
 public class ExcludedBlock extends SlimefunItem implements NotPlaceable {

@@ -25,7 +25,6 @@ import org.bukkit.potion.PotionEffect;
 
 /**
  * 
- * @author TheBusyBiscuit
  * @since 4.0
  */
 public class Talisman extends SlimefunItem {
