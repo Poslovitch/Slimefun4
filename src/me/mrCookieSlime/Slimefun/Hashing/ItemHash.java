@@ -38,7 +38,7 @@ public class ItemHash {
 		StringBuilder builder = new StringBuilder(LENGTH * 2);
 		
 		for (char c: item.hash.toCharArray()) {
-			builder.append('§');
+			builder.append("§");
 			builder.append(c);
 		}
 		

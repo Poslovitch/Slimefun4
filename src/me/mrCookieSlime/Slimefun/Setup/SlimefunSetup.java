@@ -192,7 +192,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("ENHANCED_CRAFTING_TABLE");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("ENHANCED_CRAFTING_TABLE");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -338,7 +338,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("GRIND_STONE");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("GRIND_STONE");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -377,7 +377,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("ARMOR_FORGE");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("ARMOR_FORGE");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -447,7 +447,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("ORE_CRUSHER");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("ORE_CRUSHER");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -486,7 +486,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("COMPRESSOR");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("COMPRESSOR");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -712,7 +712,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("SMELTERY");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("SMELTERY");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -770,7 +770,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, final Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("PRESSURE_CHAMBER");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("PRESSURE_CHAMBER");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -1104,7 +1104,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, final Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("MAGIC_WORKBENCH");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("MAGIC_WORKBENCH");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -1278,7 +1278,7 @@ public class SlimefunSetup {
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
 
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("ORE_WASHER");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("ORE_WASHER");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, machine.getItem(), true)) {
@@ -1767,7 +1767,7 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
-				if (mb.isMultiBlock(SlimefunItem.getByName("SAW_MILL"))) {
+				if (mb.isMultiBlock(SlimefunItem.getByID("SAW_MILL"))) {
 					if (Slimefun.hasUnlocked(p, SlimefunItems.SAW_MILL, true)) {
 						if (b.getRelative(BlockFace.UP).getType() == Material.LOG) BlockBreaker.breakBlock(p, b.getRelative(BlockFace.UP), Arrays.asList(new ItemStack[] {new CustomItem(Material.WOOD, b.getRelative(BlockFace.UP).getData() % 4, 8)}), true);
 						else if (b.getRelative(BlockFace.UP).getType() == Material.LOG_2) BlockBreaker.breakBlock(p, b.getRelative(BlockFace.UP), Arrays.asList(new ItemStack[] {new CustomItem(Material.WOOD, (b.getRelative(BlockFace.UP).getData() % 2) + 4, 8)}), true);
@@ -1812,7 +1812,7 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, final Block b) {
-				if (mb.isMultiBlock(SlimefunItem.getByName("DIGITAL_MINER"))) {
+				if (mb.isMultiBlock(SlimefunItem.getByID("DIGITAL_MINER"))) {
 					if (Slimefun.hasUnlocked(p, SlimefunItems.DIGITAL_MINER, true)) {
 						Chest chest = (Chest) b.getRelative(BlockFace.UP).getState();
 						final Inventory inv = chest.getInventory();
@@ -1888,7 +1888,7 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, final Block b) {
-				if (mb.isMultiBlock(SlimefunItem.getByName("ADVANCED_DIGITAL_MINER"))) {
+				if (mb.isMultiBlock(SlimefunItem.getByID("ADVANCED_DIGITAL_MINER"))) {
 					if (Slimefun.hasUnlocked(p, SlimefunItems.ADVANCED_DIGITAL_MINER, true)) {
 						Chest chest = (Chest) b.getRelative(BlockFace.UP).getState();
 						final Inventory inv = chest.getInventory();
@@ -2151,7 +2151,7 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onInteract(final Player p, MultiBlock mb, final Block b) {
-				if (mb.isMultiBlock(SlimefunItem.getByName("AUTOMATED_PANNING_MACHINE"))) {
+				if (mb.isMultiBlock(SlimefunItem.getByID("AUTOMATED_PANNING_MACHINE"))) {
 					final ItemStack input = p.getItemInHand();
 					ItemStack output = null;
 					if (SlimefunStartup.chance(100, (Integer) Slimefun.getItemValue("GOLD_PAN", "chance.SIFTED_ORE"))) output = SlimefunItems.SIFTED_ORE;
@@ -2647,7 +2647,7 @@ public class SlimefunSetup {
 
 			@Override
 			public boolean onInteract(Player p, MultiBlock mb, Block b) {
-				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByName("JUICER");
+				SlimefunMachine machine = (SlimefunMachine) SlimefunItem.getByID("JUICER");
 
 				if (mb.isMultiBlock(machine)) {
 					if (Slimefun.hasUnlocked(p, SlimefunItems.JUICER, true)) {
@@ -3131,23 +3131,23 @@ public class SlimefunSetup {
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.SMALL_CAPACITOR, "SMALL_CAPACITOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.DURALUMIN_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.DURALUMIN_INGOT, new ItemStack(Material.REDSTONE), SlimefunItems.SULFATE, new ItemStack(Material.REDSTONE), SlimefunItems.DURALUMIN_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.DURALUMIN_INGOT})
-		.registerDistibutingCapacitor(true, 128);
+		.registerDistributingCapacitor(true, 128);
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.MEDIUM_CAPACITOR, "MEDIUM_CAPACITOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.BILLON_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.BILLON_INGOT, new ItemStack(Material.REDSTONE), SlimefunItems.SMALL_CAPACITOR, new ItemStack(Material.REDSTONE), SlimefunItems.BILLON_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.BILLON_INGOT})
-		.registerDistibutingCapacitor(true, 512);
+		.registerDistributingCapacitor(true, 512);
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.BIG_CAPACITOR, "BIG_CAPACITOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.STEEL_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.STEEL_INGOT, new ItemStack(Material.REDSTONE), SlimefunItems.MEDIUM_CAPACITOR, new ItemStack(Material.REDSTONE), SlimefunItems.STEEL_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.STEEL_INGOT})
-		.registerDistibutingCapacitor(true, 1024);
+		.registerDistributingCapacitor(true, 1024);
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.LARGE_CAPACITOR, "LARGE_CAPACITOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.REINFORCED_ALLOY_INGOT, new ItemStack(Material.REDSTONE), SlimefunItems.BIG_CAPACITOR, new ItemStack(Material.REDSTONE), SlimefunItems.REINFORCED_ALLOY_INGOT, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.REINFORCED_ALLOY_INGOT})
-		.registerDistibutingCapacitor(true, 8192);
+		.registerDistributingCapacitor(true, 8192);
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.CARBONADO_EDGED_CAPACITOR, "CARBONADO_EDGED_CAPACITOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.CARBONADO, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.CARBONADO, new ItemStack(Material.REDSTONE), SlimefunItems.LARGE_CAPACITOR, new ItemStack(Material.REDSTONE), SlimefunItems.CARBONADO, SlimefunItems.REDSTONE_ALLOY, SlimefunItems.CARBONADO})
-		.registerDistibutingCapacitor(true, 65536);
+		.registerDistributingCapacitor(true, 65536);
 
 		new SlimefunItem(Categories.ELECTRICITY, SlimefunItems.SOLAR_GENERATOR, "SOLAR_GENERATOR", RecipeType.ENHANCED_CRAFTING_TABLE,
 		new ItemStack[] {SlimefunItems.SOLAR_PANEL, SlimefunItems.SOLAR_PANEL, SlimefunItems.SOLAR_PANEL, SlimefunItems.ALUMINUM_INGOT, SlimefunItems.ELECTRIC_MOTOR, SlimefunItems.ALUMINUM_INGOT, null, SlimefunItems.ALUMINUM_INGOT, null})

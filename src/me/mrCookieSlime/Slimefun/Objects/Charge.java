@@ -2,15 +2,15 @@ package me.mrCookieSlime.Slimefun.Objects;
 
 public class Charge {
 	
-	double charge, capacity;
+	private double storedEnergy, capacity;
 	
-	public Charge(double charge, double capacity) {
-		this.charge = charge;
+	public Charge(double storedEnergy, double capacity) {
+		this.storedEnergy = storedEnergy;
 		this.capacity = capacity;
 	}
 	
 	public double getStoredEnergy() {
-		return charge;
+		return storedEnergy;
 	}
 	
 	public double getCapacity() {
